@@ -1,3 +1,4 @@
+import React from "react";
 import { Search, List } from "@/components";
 
 function App() {

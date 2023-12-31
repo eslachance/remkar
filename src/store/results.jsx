@@ -25,6 +25,7 @@ const ResultsStoreProvider = ({ children }) => {
         };
       }
       case "SET_FILTERED": {
+        console.log("SET_FILTERED", action.payload);
         return {
           ...state,
           filtered: action.payload

@@ -4,7 +4,7 @@ import { fetchFromAPI, debounce } from "@/utils";
 const baseAPIURL = "https://karaoke-db.evie.workers.dev";
 
 export const Search = () => {
-  const { state, dispatch } = useContext(ResultStoreContext);
+  const { resultState, dispatch } = useContext(ResultStoreContext);
   
   const getFilteredResults = (filter) => {
     fetchFromAPI(baseAPIURL + "/search/" + filter).then((data) => {
@@ -21,7 +21,7 @@ export const Search = () => {
 
   return (
     <>
-      <input type="text" value={state?.filter} placeholder="recherche" onChange={onHandleFilterChange}></input>
+      <input type="text" value={resultState?.filter} placeholder="recherche" onChange={onHandleFilterChange}></input>
     </>
   );
 };
