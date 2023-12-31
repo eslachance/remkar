@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { ResultStoreContext } from "@/store/results";
 import { fetchFromAPI, debounce } from "@/utils";
+const baseAPIURL = "https://karaoke-db.evie.workers.dev";
 
 export const Search = () => {
   const { state, dispatch } = useContext(ResultStoreContext);
   
   const getFilteredResults = (filter) => {
-    fetchFromAPI("/search/" + filter).then((data) => {
+    fetchFromAPI(baseAPIURL + "/search/" + filter).then((data) => {
       dispatch({ type: "SET_FILTERED", payload: data });
     });
   };
