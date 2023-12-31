@@ -18,14 +18,12 @@ const ResultsStoreProvider = ({ children }) => {
   const resultsReducer = (state, action) => {
     switch (action.type) {
       case "SET_FILTER": {
-        console.log("SET_FILTER", action.payload);
         return {
           ...state,
           filter: action.payload
         };
       }
       case "SET_FILTERED": {
-        console.log("SET_FILTERED", action.payload);
         return {
           ...state,
           filtered: action.payload

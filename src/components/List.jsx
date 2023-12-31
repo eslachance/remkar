@@ -1,12 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { ResultStoreContext } from "@/store/results";
 
 export const List = () => {
   const { resultState } = useContext(ResultStoreContext);
-
-  useEffect(() => {
-    console.log(resultState);
-  }, [resultState]);
 
   return (
     <>
