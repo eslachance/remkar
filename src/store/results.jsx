@@ -1,5 +1,6 @@
 import React, { createContext, useReducer } from "react";
 import PropTypes from "prop-types";
+import { cleanString } from "@/utils";
 const baseAPIURL = "https://karaoke-db.evie.workers.dev";
 
 const initialState = {
@@ -38,7 +39,7 @@ const ResultsStoreProvider = ({ children }) => {
 
   // self-refering state logic goes here
   const loadFilteredResults = (filter) => {
-    fetch(baseAPIURL + "/search/" + filter)
+    fetch(baseAPIURL + "/search/" + cleanString(filter))
       .then((res) => res.json())
       .then((data) => {
         dispatch({ type: "SET_FILTERED", payload: data });
