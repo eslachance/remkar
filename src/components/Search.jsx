@@ -12,7 +12,7 @@ export const Search = () => {
     });
   };
 
-  const debouncedGetFilteredResults = debounce(getFilteredResults, 500);
+  const debouncedGetFilteredResults = debounce(getFilteredResults, 1000);
 
   const onHandleFilterChange = (e) => {
     dispatch({ type: "SET_FILTER", payload: e.currentTarget.value });
