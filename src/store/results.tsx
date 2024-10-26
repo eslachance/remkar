@@ -70,7 +70,7 @@ const ResultsStoreProvider = ({ children }) => {
 
   // self-refering state logic goes here
   const loadFilteredResults = (filter: string): void => {
-    fetch(baseAPIURL + '/search/' + cleanString(filter))
+    fetch(`${baseAPIURL}/search/${cleanString(filter)}`)
       .then((res) => res.json())
       .then((data) => {
         dispatch({ type: 'SET_FILTERED', payload: data });

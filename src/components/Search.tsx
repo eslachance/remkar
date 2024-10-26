@@ -10,7 +10,7 @@ const Search = () => {
     if (filter === '') {
       return dispatch({ type: 'SET_FILTERED', payload: [] });
     }
-    fetchFromAPI(baseAPIURL + '/search/' + cleanString(filter)).then((data) => {
+    fetchFromAPI(`${baseAPIURL}/search/${cleanString(filter)}`).then((data) => {
       dispatch({ type: 'SET_FILTERED', payload: data });
     });
   };
