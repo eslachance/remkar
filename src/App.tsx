@@ -1,5 +1,5 @@
-import React from "react";
-import { Search, List } from "@/components";
+import Search from '@/components/Search';
+import List from '@/components/List';
 
 function App() {
   return (
