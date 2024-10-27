@@ -25,8 +25,7 @@ const Search = () => {
     <>
       <label
         htmlFor="default-search"
-        className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-      >
+        className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
         Search
       </label>
       <div className="relative">
@@ -36,8 +35,7 @@ const Search = () => {
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
-            viewBox="0 0 20 20"
-          >
+            viewBox="0 0 20 20">
             <path
               stroke="currentColor"
               strokeLinecap="round"

@@ -78,9 +78,7 @@ const ResultsStoreProvider = ({ children }) => {
   };
 
   return (
-    <ResultStoreContext.Provider
-      value={{ resultState, dispatch, loadFilteredResults }}
-    >
+    <ResultStoreContext.Provider value={{ resultState, dispatch, loadFilteredResults }}>
       {children}
     </ResultStoreContext.Provider>
   );

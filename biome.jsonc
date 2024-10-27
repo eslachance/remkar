@@ -1,4 +1,11 @@
 {
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true,
+    "defaultBranch": "main"
+  },
   "linter": {
     "rules": {
       "suspicious": {
@@ -21,6 +28,7 @@
       "bracketSpacing": true,
       "jsxQuoteStyle": "double",
       "quoteProperties": "asNeeded",
+      "quoteStyle": "single",
       "semicolons": "always",
       "trailingCommas": "all"
     }
@@ -28,6 +36,9 @@
   "json": {
     "formatter": {
       "trailingCommas": "none"
+    },
+    "parser": {
+      "allowComments": true
     }
   }
 }
