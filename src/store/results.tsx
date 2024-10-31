@@ -1,6 +1,5 @@
 import { createContext, useReducer } from 'react';
-import { cleanString } from '@/utils';
-const baseAPIURL = 'https://karaoke-db.evie.workers.dev';
+import { cleanString, fetchFromAPI } from '@/utils';
 
 export type SongData = {
   artist: string;
@@ -37,13 +36,13 @@ type SetFilteredAction = {
 interface ResultsContext {
   resultState: typeof initialState;
   dispatch: React.Dispatch<SetFilterAction | SetFilteredAction>;
-  loadFilteredResults: (filter: string) => void;
+  loadFilteredResults?: (filter: string) => void;
+  getSongDataByID?: (id: string) => SongData | undefined;
 }
 
 const ResultStoreContext = createContext<ResultsContext>({
   resultState: initialState,
   dispatch: () => {},
-  loadFilteredResults: () => {},
 });
 
 const ResultsStoreProvider = ({ children }) => {
@@ -70,15 +69,19 @@ const ResultsStoreProvider = ({ children }) => {
 
   // self-refering state logic goes here
   const loadFilteredResults = (filter: string): void => {
-    fetch(`${baseAPIURL}/search/${cleanString(filter)}`)
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch({ type: 'SET_FILTERED', payload: data });
-      });
+    fetchFromAPI(`/search/${cleanString(filter)}`).then((data) => {
+      dispatch({ type: 'SET_FILTERED', payload: data });
+    });
+  };
+
+  const getSongDataByID = (id: string): SongData => {
+    console.log(id, resultState);
+    return resultState.filtered.find((song) => song.id === Number(id));
   };
 
   return (
-    <ResultStoreContext.Provider value={{ resultState, dispatch, loadFilteredResults }}>
+    <ResultStoreContext.Provider
+      value={{ resultState, dispatch, loadFilteredResults, getSongDataByID }}>
       {children}
     </ResultStoreContext.Provider>
   );

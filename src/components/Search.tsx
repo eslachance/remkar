@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
 import { ResultStoreContext } from '@/store/results';
 import { fetchFromAPI, debounce, cleanString } from '@/utils';
-const baseAPIURL = 'https://karaoke-db.evie.workers.dev';
 
 const Search = () => {
   const { resultState, dispatch } = useContext(ResultStoreContext);
@@ -10,11 +9,11 @@ const Search = () => {
     if (filter === '') {
       return dispatch({ type: 'SET_FILTERED', payload: [] });
     }
-    fetchFromAPI(`${baseAPIURL}/search/${cleanString(filter)}`).then((data) => {
+    fetchFromAPI(`/search/${cleanString(filter)}`).then((data) => {
       dispatch({ type: 'SET_FILTERED', payload: data });
     });
   };
-  const [search] = useState(() => debounce(getFilteredResults, 500));
+  const [search] = useState(() => debounce(getFilteredResults, 250));
 
   const onHandleFilterChange = (e) => {
     dispatch({ type: 'SET_FILTER', payload: e.currentTarget.value });

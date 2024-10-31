@@ -1,5 +1,7 @@
 import { useContext } from 'react';
+
 import { ResultStoreContext } from '@/store/results';
+import { Link, Outlet } from 'react-router-dom';
 
 const List = () => {
   const { resultState } = useContext(ResultStoreContext);
@@ -14,11 +16,13 @@ const List = () => {
       <div className="flex flex-col gap-2 overflow-auto">
         {resultState?.filtered?.map((item) => (
           <div className="border-1 border-solid border-black rounded p2" key={item.id}>
-            <strong>{item.id} : </strong>
-            {item.artist} - {item.title}
+            <Link to={`/songs/${item.id}`}>
+              {item.artist} - {item.title}
+            </Link>
           </div>
         ))}
       </div>
+      <Outlet />
     </>
   );
 };
