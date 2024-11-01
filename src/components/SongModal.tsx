@@ -31,58 +31,58 @@ const flagMap: Record<string, string> = {
   korean: 'KR',
 };
 
-type CompanyData = {
-  keyname: string;
-  name: string;
-  logo?: string;
-};
+// type CompanyData = {
+//   keyname: string;
+//   name: string;
+//   logo?: string;
+// };
 
-const companyMap: Record<string, CompanyData> = {
-  SS: {
-    keyname: 'SS',
-    name: `Singer's Solution`,
-  },
-  L: {
-    keyname: 'L',
-    name: 'Legends -SeRIES-',
-  },
-  NU: {
-    keyname: 'NU',
-    name: 'NUTECH',
-  },
-  KB: {
-    keyname: 'KB',
-    name: 'KaraokeBay.com',
-  },
-  P: {
-    keyname: 'P',
-    name: 'Pioneer',
-  },
-  CB: {
-    keyname: 'CB',
-    name: 'Chartbuster Karaoke',
-  },
-  ME: {
-    keyname: 'ME',
-    name: 'Mr. Entertainer',
-  },
-  MH: {
-    keyname: 'MH',
-    name: 'Monster Hits',
-  },
-  SC: {
-    keyname: 'SC',
-    name: 'Sound Choice',
-  },
-  RB: {
-    keyname: 'RB',
-    name: 'Rox Box',
-  },
-  PS: {
-    keyname: 'PS',
-    name: 'Pocket Songs',
-  },
-};
+// const companyMap: Record<string, CompanyData> = {
+//   SS: {
+//     keyname: 'SS',
+//     name: `Singer's Solution`,
+//   },
+//   L: {
+//     keyname: 'L',
+//     name: 'Legends -SeRIES-',
+//   },
+//   NU: {
+//     keyname: 'NU',
+//     name: 'NUTECH',
+//   },
+//   KB: {
+//     keyname: 'KB',
+//     name: 'KaraokeBay.com',
+//   },
+//   P: {
+//     keyname: 'P',
+//     name: 'Pioneer',
+//   },
+//   CB: {
+//     keyname: 'CB',
+//     name: 'Chartbuster Karaoke',
+//   },
+//   ME: {
+//     keyname: 'ME',
+//     name: 'Mr. Entertainer',
+//   },
+//   MH: {
+//     keyname: 'MH',
+//     name: 'Monster Hits',
+//   },
+//   SC: {
+//     keyname: 'SC',
+//     name: 'Sound Choice',
+//   },
+//   RB: {
+//     keyname: 'RB',
+//     name: 'Rox Box',
+//   },
+//   PS: {
+//     keyname: 'PS',
+//     name: 'Pocket Songs',
+//   },
+// };
 
 const SongDataModal = () => {
   const navigate = useNavigate();
