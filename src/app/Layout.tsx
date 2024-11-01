@@ -8,73 +8,71 @@ const Layout = () => {
     avatar: 'https://avatars.githubusercontent.com/u/1019278?v=4',
     role: 'admin',
   };
+
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 h-screen w-screen p-0 m-0">
       <nav
-        className={`transition-all ease-in-out delay-500 duration-500 flex gap-3 items-center border-b border-b-solid border-blueGray-300 shadow-lg ${
+        className={`transition-all ease-in-out duration-750 flex flex-col gap-3 items-center fixed top-0 left-0 w-full z-1000 px-5 box-border ${
           isLoginPage
-            ? 'p-0 absolute top-0 left-0 w-full h-full bg-sky-800'
-            : 'h-2 p-4 bg-blueGray-100'
+            ? 'h-full bg-sky-800'
+            : 'border-b border-b-solid border-blueGray-300 shadow-lg h-12 bg-blueGray-100'
         }`}>
-        {!isLoginPage ? (
-          <>
-            <Link to="/">
-              <span className="iconify i-ri-home-5-line mr-1" />
-              Info
+        <div
+          className={`transition-all ease-in-out duration-750 flex gap-3 items-center overflow-hidden w-full justify-between pt-2 ${isLoginPage ? 'opacity-0' : 'opacity-100'}`}>
+          <div className="flex items-center gap-3 h-10">
+            <Link to="/" className="flex items-center gap-1">
+              <span className="gap-1 iconify i-ri-home-5-line" />
+              <span>Info</span>
             </Link>
-            <Link to="/songs">
-              <span className="iconify i-ri-search-line mr-1" />
+            <Link to="/songs" className="flex items-center gap-1">
+              <span className="iconify i-ri-search-line" />
               Recherche
             </Link>
-            <div className="ml-auto flex items-center gap-1">
-              <span className="iconify i-ri-user-3-fill mr-1" />
-              {user?.username ? (
-                user.username
-              ) : (
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={() => setIsLoginPage(true)}>
-                  Login
-                </button>
-              )}
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="flex flex-col items-center justify-center h-full text-white mx-auto">
-              <div className="flex flex-col items-center justify-center gap-4 w-full">
-                <div className="text-center">
-                  <h1 className="text-3xl font-bold">Karaoke Remise</h1>
-                  <p className="text-lg">Entrez votre information:</p>
-                  <div className="flex flex-col">
-                    <span>
-                      Username:
-                      <input type="text" name="username" id="username" />
-                    </span>
-                    <span>
-                      Password:
-                      <input type="password" name="password" id="username" />
-                    </span>
-                  </div>
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={() => setIsLoginPage(false)}>
-                    Connecter
-                  </button>
-                </div>
-              </div>
-            </div>
-          </>
-        )}
-        {/* <Link to="/">Home</Link> | <Link to="/songs">Search</Link> */}
-      </nav>
-      {!isLoginPage && (
-        <div className="p2">
-          <Outlet />
+          </div>
+          <div className="user-button flex items-center gap-1">
+            <span className="iconify i-ri-user-3-fill" />
+            {user?.username ? (
+              user.username
+            ) : (
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => setIsLoginPage(true)}>
+                Login
+              </button>
+            )}
+          </div>
         </div>
-      )}
+        <div
+          className={`transition-all ease-in-out duration-750 flex flex-col items-center justify-center text-white mx-auto overflow-hidden ${isLoginPage ? 'h-full' : 'h-0'}`}>
+          <div className="flex flex-col items-center justify-center gap-4 w-full">
+            <div className="text-center">
+              <h1 className="text-3xl font-bold">Karaoke Remise</h1>
+              <p className="text-lg">Entrez votre information:</p>
+              <div className="flex flex-col">
+                <span>
+                  Username:
+                  <input type="text" name="username" id="username" />
+                </span>
+                <span>
+                  Password:
+                  <input type="password" name="password" id="username" />
+                </span>
+              </div>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => setIsLoginPage(false)}>
+                Connecter
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div
+        className={`p-2 pt-16 transition-all ease-in-out duration-750 ${isLoginPage ? 'opacity-0' : 'opacity-100'}`}>
+        <Outlet />
+      </div>
     </div>
   );
 };
