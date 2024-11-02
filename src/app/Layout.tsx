@@ -18,15 +18,17 @@ const Layout = () => {
             : 'border-b border-b-solid border-blueGray-300 shadow-lg h-12 bg-blueGray-100'
         }`}>
         <div
-          className={`transition-all ease-in-out duration-750 flex gap-3 items-center overflow-hidden w-full justify-between pt-2 ${isLoginPage ? 'opacity-0' : 'opacity-100'}`}>
+          className={`transition-all ease-in-out duration-750 flex gap-3 items-center
+            overflow-hidden w-full justify-between pt-2
+            ${isLoginPage ? 'opacity-0' : 'opacity-100'}`}>
           <div className="flex items-center gap-3 h-10">
-            <Link to="/" className="flex items-center gap-1">
-              <span className="gap-1 iconify i-ri-home-5-line" />
-              <span>Info</span>
-            </Link>
             <Link to="/songs" className="flex items-center gap-1">
               <span className="iconify i-ri-search-line" />
               Recherche
+            </Link>
+            <Link to="/" className="flex items-center gap-1">
+              <span className="gap-1 iconify i-ri-home-5-line" />
+              <span>Info</span>
             </Link>
           </div>
           <div className="user-button flex items-center gap-1">
@@ -45,28 +47,22 @@ const Layout = () => {
           </div>
         </div>
         <div
-          className={`transition-all ease-in-out duration-750 flex flex-col items-center justify-center text-white mx-auto overflow-hidden ${isLoginPage ? 'h-full' : 'h-0'}`}>
-          <div className="flex flex-col items-center justify-center gap-4 w-full">
-            <div className="text-center">
-              <h1 className="text-3xl font-bold">Karaoke Remise</h1>
-              <p className="text-lg">Entrez votre information:</p>
-              <div className="flex flex-col">
-                <span>
-                  Username:
-                  <input type="text" name="username" id="username" />
-                </span>
-                <span>
-                  Password:
-                  <input type="password" name="password" id="username" />
-                </span>
-              </div>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => setIsLoginPage(false)}>
-                Connecter
-              </button>
+          className={`transition-all ease-in-out duration-500 flex flex-col items-center justify-center mx-auto overflow-hidden ${isLoginPage ? 'h-full' : 'h-0'}`}>
+          <h1 className="text-3xl font-bold text-white">Karaoke Remise</h1>
+          <div className="flex flex-col p-5 gap-4 w-full border-b border-solid border-blueGray-600 shadow-lg bg-blueGray-300 rounded-lg font-bold">
+            <p className="text-2xl my-3 mx-4">Informations de Connexion</p>
+            <div className="flex flex-col mx-4">
+              <span>Nom d'utilisateur</span>
+              <input type="text" name="username" id="username" />
+              <span>Mot de passe</span>
+              <input type="password" name="password" id="username" />
             </div>
+            <button
+              type="button"
+              className="btn btn-primary mx-4 mb-2"
+              onClick={() => setIsLoginPage(false)}>
+              Connecter
+            </button>
           </div>
         </div>
       </nav>
