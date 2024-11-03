@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 import Home from '@/pages/Home';
 import Search from '@/pages/Search';
@@ -11,11 +11,15 @@ const router = createBrowserRouter([
     Component: Layout,
     children: [
       {
-        path: '/',
+        index: true,
+        element: <Navigate to='/search' />
+      },
+      {
+        path: '/info',
         Component: Home,
       },
       {
-        path: '/songs',
+        path: '/search',
         Component: Search,
         children: [
           {

@@ -37,6 +37,7 @@ const Layout = () => {
               <button
                 type="button"
                 className="btn btn-primary"
+                disabled
                 onClick={() => setIsLoginPage(true)}>
                 Login
               </button>
