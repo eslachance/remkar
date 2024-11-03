@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 
 const Layout = () => {
-  const [isLoginPage, setIsLoginPage] = useState(true);
+  const [isLoginPage, setIsLoginPage] = useState(false);
   const user = {
     username: null,
     avatar: 'https://avatars.githubusercontent.com/u/1019278?v=4',
