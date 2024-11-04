@@ -1,13 +1,88 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Outlet, Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+
+import { fetchFromAPI } from '@/utils';
+
+type UserData = {
+  username: string;
+  avatar: string;
+  role: string;
+};
 
 const Layout = () => {
   const [isLoginPage, setIsLoginPage] = useState(false);
-  const user = {
-    username: null,
-    avatar: 'https://avatars.githubusercontent.com/u/1019278?v=4',
-    role: 'admin',
+  const usernameRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const {
+    data: user,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useQuery<UserData>({
+    queryKey: ['userData'],
+    queryFn: () => fetchFromAPI('/me'),
+  });
+
+  const handleLogin = () => {
+    fetchFromAPI('/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: usernameRef?.current.value,
+        password: passwordRef?.current.value,
+      }),
+    })
+      .then((data) => {
+        if (data.success) {
+          setIsLoginPage(false);
+          usernameRef.current.value = '';
+          passwordRef.current.value = '';
+          refetch();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        alert('Erreur lors de la connexion');
+      });
   };
+
+  const handleCreateAccount = () => {
+    fetchFromAPI('/signup', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: usernameRef?.current.value,
+        password: passwordRef?.current.value,
+      }),
+    })
+      .then((data) => {
+        if (data.success) {
+          usernameRef.current.value = '';
+          passwordRef.current.value = '';
+          refetch();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        alert('Erreur lors de la création du compte');
+      });
+  };
+
+  const handleLogout = () => {
+    fetchFromAPI('/logout')
+      .then((data) => {
+        if (data.success) {
+          refetch();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        alert('Erreur lors de la déconnexion');
+      });
+  };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error: {error.message}</div>;
 
   return (
     <div className="flex flex-col gap-2 h-screen w-screen p-0 m-0">
@@ -22,11 +97,11 @@ const Layout = () => {
             overflow-hidden w-full justify-between pt-2
             ${isLoginPage ? 'opacity-0' : 'opacity-100'}`}>
           <div className="flex items-center gap-3 h-10">
-            <Link to="/songs" className="flex items-center gap-1">
+            <Link to="/search" className="flex items-center gap-1">
               <span className="iconify i-ri-search-line" />
               Recherche
             </Link>
-            <Link to="/" className="flex items-center gap-1">
+            <Link to="/info" className="flex items-center gap-1">
               <span className="gap-1 iconify i-ri-home-5-line" />
               <span>Info</span>
             </Link>
@@ -34,12 +109,16 @@ const Layout = () => {
           <div className="user-button flex items-center gap-1">
             <span className="iconify i-ri-user-3-fill" />
             {user?.username ? (
-              user.username
+              <>
+                {user.username}
+                <button type="button" className="btn btn-primary" onClick={handleLogout}>
+                  X
+                </button>
+              </>
             ) : (
               <button
                 type="button"
                 className="btn btn-primary"
-                disabled
                 onClick={() => setIsLoginPage(true)}>
                 Login
               </button>
@@ -53,15 +132,18 @@ const Layout = () => {
             <p className="text-2xl my-3 mx-4">Informations de Connexion</p>
             <div className="flex flex-col mx-4">
               <span>Nom d'utilisateur</span>
-              <input type="text" name="username" id="username" />
+              <input type="text" name="username" id="username" ref={usernameRef} />
               <span>Mot de passe</span>
-              <input type="password" name="password" id="username" />
+              <input type="password" name="password" id="password" ref={passwordRef} />
             </div>
+            <button type="button" className="btn btn-primary mx-4 mb-2" onClick={handleLogin}>
+              Connecter
+            </button>
             <button
               type="button"
               className="btn btn-primary mx-4 mb-2"
-              onClick={() => setIsLoginPage(false)}>
-              Connecter
+              onClick={handleCreateAccount}>
+              Nouveau Compte
             </button>
           </div>
         </div>
@@ -69,6 +151,16 @@ const Layout = () => {
       <div
         className={`p-2 pt-16 transition-all ease-in-out duration-750 ${isLoginPage ? 'opacity-0' : 'opacity-100'}`}>
         <Outlet />
+      </div>
+      <div className="fixed bottom-0 left-0 w-full h-12 bg-blueGray-100 border-t border-solid border-blueGray-300 shadow-lg">
+        <div className="flex items-center justify-between p-2 mx-auto">
+          <span className="text-sm text-gray-500 dark:text-gray-400">
+            © 2024 Eric-Sebastien Lachance
+          </span>
+          <span className="text-sm text-gray-500 dark:text-gray-400">
+            Version 0.0.1 Beta ({import.meta.env.MODE})
+          </span>
+        </div>
       </div>
     </div>
   );
