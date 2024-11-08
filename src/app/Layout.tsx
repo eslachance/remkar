@@ -87,7 +87,7 @@ const Layout = () => {
   if (isError) return <div>Error: {error.message}</div>;
 
   return (
-    <div className="flex flex-col gap-2 h-screen w-screen p-0 m-0">
+    <div className="flex flex-col gap-2 h-screen p-0 m-0">
       <nav
         className={`transition-all ease-in-out duration-750 flex flex-col gap-3 items-center fixed top-0 left-0 w-full z-1000 px-5 box-border ${
           isLoginPage
@@ -122,33 +122,43 @@ const Layout = () => {
                 type="button"
                 className="btn btn-primary"
                 onClick={() => setIsLoginPage(true)}>
-                Login
+                Connexion
               </button>
             )}
           </div>
         </div>
         <div
           className={`transition-all ease-in-out duration-500 flex flex-col items-center justify-center mx-auto overflow-hidden ${isLoginPage ? 'h-full' : 'h-0'}`}>
-          <h1 className="text-3xl font-bold text-white">Karaoke Remise</h1>
-          <div className="flex flex-col p-5 gap-4 w-full border-b border-solid border-blueGray-600 shadow-lg bg-blueGray-300 rounded-lg font-bold">
-            <form onSubmit={handleLogin}>
-              <p className="text-2xl my-3 mx-4">Informations de Connexion</p>
-              <div className="flex flex-col mx-4">
-                <span>Nom d'utilisateur</span>
-                <input type="text" name="username" id="username" ref={usernameRef} />
-                <span>Mot de passe</span>
-                <input type="password" name="password" id="password" ref={passwordRef} />
+          <div className="flex flex-col items-center justify-center">
+            <h1 className="text-3xl font-bold text-white">Karaoke Remise </h1>
+            <div className="flex flex-col p-5 gap-4 w-full border-b border-solid border-blueGray-600 shadow-lg bg-blueGray-300 rounded-lg font-bold relative">
+              <div className="absolute top-0 right-6">
+                <button
+                  type="button"
+                  className={`btn btn-primary ${isLoginPage ? '' : 'hidden'}`}
+                  onClick={() => setIsLoginPage(false)}>
+                  <span className="iconify i-ri-close-line" />
+                </button>
               </div>
-              <button type="button" className="btn btn-primary mx-4 mb-2" onClick={handleLogin}>
-                Connecter
-              </button>
-              <button
-                type="submit"
-                className="btn btn-primary mx-4 mb-2"
-                onClick={handleCreateAccount}>
-                Nouveau Compte
-              </button>
-            </form>
+              <form onSubmit={handleLogin}>
+                <p className="text-2xl my-3 mx-4">Informations de Connexion</p>
+                <div className="flex flex-col mx-4">
+                  <span>Nom d'utilisateur</span>
+                  <input type="text" name="username" id="username" ref={usernameRef} />
+                  <span>Mot de passe</span>
+                  <input type="password" name="password" id="password" ref={passwordRef} />
+                </div>
+                <button type="button" className="btn btn-primary mx-4 mb-2" onClick={handleLogin}>
+                  Connecter
+                </button>
+                <button
+                  type="submit"
+                  className="btn btn-primary mx-4 mb-2"
+                  onClick={handleCreateAccount}>
+                  Nouveau Compte
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </nav>
