@@ -12,14 +12,14 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to='/search' />
+        element: <Navigate to="/karaoke" />,
       },
       {
         path: '/info',
         Component: Home,
       },
       {
-        path: '/search',
+        path: '/karaoke',
         Component: Search,
         children: [
           {

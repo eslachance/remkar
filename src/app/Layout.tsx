@@ -25,7 +25,8 @@ const Layout = () => {
     queryFn: () => fetchFromAPI('/me'),
   });
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     fetchFromAPI('/login', {
       method: 'POST',
       body: JSON.stringify({
@@ -68,7 +69,8 @@ const Layout = () => {
       });
   };
 
-  const handleLogout = () => {
+  const handleLogout = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     fetchFromAPI('/logout')
       .then((data) => {
         if (data.success) {
@@ -97,7 +99,7 @@ const Layout = () => {
             overflow-hidden w-full justify-between pt-2
             ${isLoginPage ? 'opacity-0' : 'opacity-100'}`}>
           <div className="flex items-center gap-3 h-10">
-            <Link to="/search" className="flex items-center gap-1">
+            <Link to="/karaoke" className="flex items-center gap-1">
               <span className="iconify i-ri-search-line" />
               Recherche
             </Link>
@@ -129,36 +131,36 @@ const Layout = () => {
           className={`transition-all ease-in-out duration-500 flex flex-col items-center justify-center mx-auto overflow-hidden ${isLoginPage ? 'h-full' : 'h-0'}`}>
           <h1 className="text-3xl font-bold text-white">Karaoke Remise</h1>
           <div className="flex flex-col p-5 gap-4 w-full border-b border-solid border-blueGray-600 shadow-lg bg-blueGray-300 rounded-lg font-bold">
-            <p className="text-2xl my-3 mx-4">Informations de Connexion</p>
-            <div className="flex flex-col mx-4">
-              <span>Nom d'utilisateur</span>
-              <input type="text" name="username" id="username" ref={usernameRef} />
-              <span>Mot de passe</span>
-              <input type="password" name="password" id="password" ref={passwordRef} />
-            </div>
-            <button type="button" className="btn btn-primary mx-4 mb-2" onClick={handleLogin}>
-              Connecter
-            </button>
-            <button
-              type="button"
-              className="btn btn-primary mx-4 mb-2"
-              onClick={handleCreateAccount}>
-              Nouveau Compte
-            </button>
+            <form onSubmit={handleLogin}>
+              <p className="text-2xl my-3 mx-4">Informations de Connexion</p>
+              <div className="flex flex-col mx-4">
+                <span>Nom d'utilisateur</span>
+                <input type="text" name="username" id="username" ref={usernameRef} />
+                <span>Mot de passe</span>
+                <input type="password" name="password" id="password" ref={passwordRef} />
+              </div>
+              <button type="button" className="btn btn-primary mx-4 mb-2" onClick={handleLogin}>
+                Connecter
+              </button>
+              <button
+                type="submit"
+                className="btn btn-primary mx-4 mb-2"
+                onClick={handleCreateAccount}>
+                Nouveau Compte
+              </button>
+            </form>
           </div>
         </div>
       </nav>
       <div
-        className={`p-2 pt-16 transition-all ease-in-out duration-750 ${isLoginPage ? 'opacity-0' : 'opacity-100'}`}>
+        className={`py-16 transition-all ease-in-out duration-750 ${isLoginPage ? 'opacity-0' : 'opacity-100'}`}>
         <Outlet />
       </div>
-      <div className="fixed bottom-0 left-0 w-full h-12 bg-blueGray-100 border-t border-solid border-blueGray-300 shadow-lg">
-        <div className="flex items-center justify-between p-2 mx-auto">
+      <div className="fixed bottom-0 left-0 w-full h-12 bg-blueGray-100 border-t border-t-solid border-t-blueGray-300 shadow-lg box-border flex items-center">
+        <div className="flex items-center justify-between p-2 mx-auto flex-col sm:flex-row w-full">
+          <span className="text-sm text-gray-500 dark:text-gray-400">© 2024 Bar La Remise</span>
           <span className="text-sm text-gray-500 dark:text-gray-400">
-            © 2024 Eric-Sebastien Lachance
-          </span>
-          <span className="text-sm text-gray-500 dark:text-gray-400">
-            Version 0.0.1 Beta ({import.meta.env.MODE})
+            Version 0.0.2 Beta ({import.meta.env.MODE})
           </span>
         </div>
       </div>

@@ -16,7 +16,7 @@ const List = () => {
       <div className="flex flex-col gap-2 overflow-auto">
         {resultState?.filtered?.map((item) => (
           <div className="border-1 border-solid border-black rounded p2" key={item.id}>
-            <Link to={`/songs/${item.id}`}>
+            <Link to={`/karaoke/${item.id}`}>
               {item.artist} - {item.title}
             </Link>
           </div>
