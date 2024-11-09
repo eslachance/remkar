@@ -15,3 +15,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+
+a {
+  @apply no-underline hover:underline text-[#c46468] hover:text-red-800 visited:text-purple-600;
+}

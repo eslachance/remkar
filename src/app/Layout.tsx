@@ -6,8 +6,10 @@ import { fetchFromAPI } from '@/utils';
 
 type UserData = {
   username: string;
+  isAdmin: boolean;
+  name: string;
   avatar: string;
-  role: string;
+  isLoggedIn: boolean;
 };
 
 const Layout = () => {
@@ -87,12 +89,12 @@ const Layout = () => {
   if (isError) return <div>Error: {error.message}</div>;
 
   return (
-    <div className="flex flex-col gap-2 h-screen p-0 m-0">
+    <div className="flex flex-col gap-2 min-h-screen p-0 m-0 bg-back-white">
       <nav
         className={`transition-all ease-in-out duration-750 flex flex-col gap-3 items-center fixed top-0 left-0 w-full z-1000 px-5 box-border ${
           isLoginPage
             ? 'h-full bg-sky-800'
-            : 'border-b border-b-solid border-blueGray-300 shadow-lg h-12 bg-blueGray-100'
+            : 'border-b border-b-solid border-blueGray-300 shadow-lg h-12 bg-nav-back text-nav-fore'
         }`}>
         <div
           className={`transition-all ease-in-out duration-750 flex gap-3 items-center
@@ -112,7 +114,7 @@ const Layout = () => {
             <span className="iconify i-ri-user-3-fill" />
             {user?.username ? (
               <>
-                {user.username}
+                {user.name}
                 <button type="button" className="btn btn-primary" onClick={handleLogout}>
                   X
                 </button>
@@ -148,11 +150,12 @@ const Layout = () => {
                   <span>Mot de passe</span>
                   <input type="password" name="password" id="password" ref={passwordRef} />
                 </div>
-                <button type="button" className="btn btn-primary mx-4 mb-2" onClick={handleLogin}>
+                <button type="submit" className="btn btn-primary mx-4 mb-2" onClick={handleLogin}>
                   Connecter
                 </button>
                 <button
-                  type="submit"
+                  type="button"
+                  disabled
                   className="btn btn-primary mx-4 mb-2"
                   onClick={handleCreateAccount}>
                   Nouveau Compte
@@ -166,12 +169,10 @@ const Layout = () => {
         className={`py-16 transition-all ease-in-out duration-750 ${isLoginPage ? 'opacity-0' : 'opacity-100'}`}>
         <Outlet />
       </div>
-      <div className="fixed bottom-0 left-0 w-full h-12 bg-blueGray-100 border-t border-t-solid border-t-blueGray-300 shadow-lg box-border flex items-center">
-        <div className="flex items-center justify-between p-2 mx-auto flex-col sm:flex-row w-full">
-          <span className="text-sm text-gray-500 dark:text-gray-400">© 2024 Bar La Remise</span>
-          <span className="text-sm text-gray-500 dark:text-gray-400">
-            Version 0.0.2 Beta ({import.meta.env.MODE})
-          </span>
+      <div className="fixed bottom-0 left-0 w-full h-12 bg-blueGray-100 border-t border-t-solid border-t-blueGray-300 shadow-lg box-border flex items-center text-nav-fore bg-nav-back text-sm">
+        <div className="flex items-center justify-between mx-auto flex-col sm:flex-row w-full p-4">
+          <span>© 2024 Bar La Remise</span>
+          <span>Version 0.0.2 Beta ({import.meta.env.MODE})</span>
         </div>
       </div>
     </div>
