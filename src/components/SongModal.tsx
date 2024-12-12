@@ -102,7 +102,7 @@ const SongDataModal = () => {
   return (
     <>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-        <div className="relative w-auto my-6 mx-auto max-w-3xl min-w-md">
+        <div className="relative my-6 mx-auto max-w-3xl min-w-sm">
           {/*content*/}
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             {/*header*/}
@@ -132,14 +132,14 @@ const SongDataModal = () => {
                 <span className="iconify i-ri-flag-line" /> :{' '}
                 <span className="">{flagMap[songData.song.language.toLowerCase()]}</span>
               </div>
-              <div className="flex gap-2 items-center">
+              {/* <div className="flex gap-2 items-center">
                 <span className="iconify i-ri-record-circle-fill" /> :{' '}
                 {songData.files.map((file) => (
                   <span className="flex gap-2 items-center" key={file.company}>
                     {file.company}
                   </span>
                 ))}
-              </div>
+              </div> */}
             </div>
             {/*footer*/}
             <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">

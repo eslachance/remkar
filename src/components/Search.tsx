@@ -3,17 +3,18 @@ import { ResultStoreContext } from '@/store/results';
 import { fetchFromAPI, debounce, cleanString } from '@/utils';
 
 const Search = () => {
-  const { resultState, dispatch } = useContext(ResultStoreContext);
+  const { resultState, dispatch, loadFilteredResults } = useContext(ResultStoreContext);
 
-  const getFilteredResults = (filter) => {
-    if (filter === '') {
-      return dispatch({ type: 'SET_FILTERED', payload: [] });
-    }
-    fetchFromAPI(`/search/${cleanString(filter)}`).then((data) => {
-      dispatch({ type: 'SET_FILTERED', payload: data });
-    });
-  };
-  const [search] = useState(() => debounce(getFilteredResults, 250));
+  // const getFilteredResults = (filter) => {
+  //   console.log('Setting filter: ', filter);
+  //   if (filter === '') {
+  //     return dispatch({ type: 'SET_RESULTS', payload: [] });
+  //   }
+  //   fetchFromAPI(`/search/${cleanString(filter)}`).then((data) => {
+  //     dispatch({ type: 'SET_RESULTS', payload: data });
+  //   });
+  // };
+  const [search] = useState(() => debounce(loadFilteredResults, 250));
 
   const onHandleFilterChange = (e) => {
     dispatch({ type: 'SET_FILTER', payload: e.currentTarget.value });

@@ -93,9 +93,15 @@ const Header = ({ isLoginPage, setIsLoginPage }) => {
 
   return (<>
     {showMenu && (
-      <div className="absolute top-15 right-2 bg-white border-1 border-solid border-blueGray-300 shadow-lg rounded-md p-2 z-5000" ref={ref}>
-        <div onClick={handleLogout}>
-          Logout
+      <div className="absolute top-15 right-2 bg-white border-1 border-solid border-blueGray-300 shadow-lg rounded-md py-4 z-5000" ref={ref}>
+        <div className="hover:bg-blueGray-200 hover:text-blueGray-700 py-4 px-10 cursor-pointer" onClick={handleLogout}>
+          Déconnection
+        </div>
+        <div className="hover:bg-blueGray-200 hover:text-blueGray-700 py-4 px-10 cursor-pointer">
+          Profil
+        </div>
+        <div className="hover:bg-blueGray-200 hover:text-blueGray-700 py-4 px-10 cursor-pointer">
+          Favoris
         </div>
       </div>
     )}
@@ -103,7 +109,7 @@ const Header = ({ isLoginPage, setIsLoginPage }) => {
       className={`transition-all ease-in-out duration-750 flex flex-col gap-3 items-center fixed top-0 left-0 w-full z-1000 px-5 box-border ${
         isLoginPage
           ? 'h-full bg-sky-800'
-          : 'border-b border-b-solid border-blueGray-300 shadow-lg h-12 bg-nav-back text-nav-fore'
+          : 'border-b border-b-solid border-blueGray-300 shadow-lg h-12 bg-white text-nav-fore'
       }`}>
       <div
         className={`transition-all ease-in-out duration-750 flex gap-3 items-center

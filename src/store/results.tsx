@@ -10,14 +10,22 @@ export type SongData = {
 };
 
 export type ResultsState = {
-  filtered: SongData[];
+  songs: {
+    results: SongData[];
+    total: number;
+    page: number;
+  },
   filter: string;
   count: number;
   total: number;
 };
 
 const initialState: ResultsState = {
-  filtered: [],
+  songs: {
+    results: [],
+    total: 0,
+    page: 1,
+  },
   filter: '',
   count: 0,
   total: 0,
@@ -29,14 +37,14 @@ type SetFilterAction = {
 };
 
 type SetFilteredAction = {
-  type: 'SET_FILTERED';
+  type: 'SET_RESULTS';
   payload: SongData[];
 };
 
 interface ResultsContext {
   resultState: typeof initialState;
   dispatch: React.Dispatch<SetFilterAction | SetFilteredAction>;
-  loadFilteredResults?: (filter: string) => void;
+  loadFilteredResults?: (filter: string, page?: number) => void;
   getSongDataByID?: (id: string) => SongData | undefined;
 }
 
@@ -54,10 +62,10 @@ const ResultsStoreProvider = ({ children }) => {
           filter: action.payload,
         };
       }
-      case 'SET_FILTERED': {
+      case 'SET_RESULTS': {
         return {
           ...state,
-          filtered: action.payload,
+          songs: action.payload,
         };
       }
       default:
@@ -68,9 +76,9 @@ const ResultsStoreProvider = ({ children }) => {
   const [resultState, dispatch] = useReducer(resultsReducer, initialState);
 
   // self-refering state logic goes here
-  const loadFilteredResults = (filter: string): void => {
-    fetchFromAPI(`/search/${cleanString(filter)}`).then((data) => {
-      dispatch({ type: 'SET_FILTERED', payload: data });
+  const loadFilteredResults = (filter: string, page = 1): void => {
+    fetchFromAPI(`/search/${cleanString(filter)}?page=${page}`).then((data) => {
+      dispatch({ type: 'SET_RESULTS', payload: data });
     });
   };
 
