@@ -1,19 +1,10 @@
 import { useContext, useState } from 'react';
 import { ResultStoreContext } from '@/store/results';
-import { fetchFromAPI, debounce, cleanString } from '@/utils';
+import { debounce } from '@/utils';
 
 const Search = () => {
   const { resultState, dispatch, loadFilteredResults } = useContext(ResultStoreContext);
 
-  // const getFilteredResults = (filter) => {
-  //   console.log('Setting filter: ', filter);
-  //   if (filter === '') {
-  //     return dispatch({ type: 'SET_RESULTS', payload: [] });
-  //   }
-  //   fetchFromAPI(`/search/${cleanString(filter)}`).then((data) => {
-  //     dispatch({ type: 'SET_RESULTS', payload: data });
-  //   });
-  // };
   const [search] = useState(() => debounce(loadFilteredResults, 250));
 
   const onHandleFilterChange = (e) => {
