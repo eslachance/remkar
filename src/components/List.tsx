@@ -7,6 +7,13 @@ const List = () => {
   const { resultState: {songs: { results, total, page }, filter }, loadFilteredResults } = useContext(ResultStoreContext);
 
   const totalPages = Math.ceil(total / 25);
+  const pageArray = [...Array(totalPages).keys()];
+
+  console.log(page, totalPages);
+  const start = Math.max(1, page - 4);
+  const end = Math.min(totalPages, page + 4);
+  const pageRange = pageArray.slice(start, end);
+  console.log(pageRange);
 
   const handlePageChange = (page) => {
     loadFilteredResults(filter, page);
@@ -17,7 +24,7 @@ const List = () => {
       {filter === '' ? (
         <h1 className="mt-0 flex justify-center">Entrer une recherche ci-haut</h1>
       ) : (
-        <h1 className="pt-0">{results.length} resultats ({total} total)</h1>
+        <h1 className="pt-0">{total} resultats {totalPages > 1 && `( ${page}/${totalPages} pages )`}</h1>
       )}
       <div className="flex flex-col gap-2 overflow-auto">
         {results.map((item) => (
@@ -36,7 +43,7 @@ const List = () => {
             disabled={page === 1}>
             <span className="iconify i-ri-arrow-left-line" />
           </button>
-          {[...Array(totalPages).keys()].map((pageNumber) => (
+          {pageRange.map((pageNumber) => (
             <button
               className={`btn btn-primary ${pageNumber + 1 === page ? 'btn-active' : ''}`}
               onClick={() => handlePageChange(pageNumber + 1)}
