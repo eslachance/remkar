@@ -13,6 +13,8 @@ const List = () => {
   const end = Math.min(totalPages, page + 4);
   const pageRange = pageArray.slice(start, end);
 
+  console.log(start, end, page, pageRange);
+
   const handlePageChange = (page) => {
     loadFilteredResults(filter, page);
   };
@@ -22,7 +24,7 @@ const List = () => {
       {filter === '' ? (
         <h1 className="mt-0 flex justify-center">Entrer une recherche ci-haut</h1>
       ) : (
-        <h1 className="pt-0">{total} resultats {totalPages > 1 && `( ${page}/${totalPages} pages )`}</h1>
+        <h1 className="pt-0 text-2xl">{total} resultats {totalPages > 1 && `(${page}/${totalPages} pages)`}</h1>
       )}
       <div className="flex flex-col gap-2 overflow-auto">
         {results.map((item) => (
@@ -36,21 +38,22 @@ const List = () => {
       { totalPages > 1 && (
         <div className="flex justify-center items-center gap-2">
           <button
-            className="btn btn-primary"
+            className="bg-white border-1 rounded-md px-3 py-1 text-lg font-bold"
             onClick={() => handlePageChange(page - 1)}
             disabled={page === 1}>
             <span className="iconify i-ri-arrow-left-line" />
           </button>
           {pageRange.map((pageNumber) => (
             <button
-              className={`btn btn-primary ${pageNumber + 1 === page ? 'btn-active' : ''}`}
-              onClick={() => handlePageChange(pageNumber + 1)}
+              className={`bg-white border-1 rounded-md px-3 py-1 text-lg font-bold ${pageNumber === page ? 'border-grey-50' : ''}`}
+              onClick={() => handlePageChange(pageNumber)}
+              disabled={pageNumber === page}
               key={pageNumber}>
-              {pageNumber + 1}
+              {pageNumber}
             </button>
           ))}
           <button
-            className="btn btn-primary"
+            className="bg-white border-1 rounded-md px-3 py-1 text-lg font-bold"
             onClick={() => handlePageChange(page + 1)}
             disabled={page === totalPages}>
             <span className="iconify i-ri-arrow-right-line" />
