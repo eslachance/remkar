@@ -9,11 +9,9 @@ const List = () => {
   const totalPages = Math.ceil(total / 25);
   const pageArray = [...Array(totalPages).keys()];
 
-  console.log(page, totalPages);
   const start = Math.max(1, page - 4);
   const end = Math.min(totalPages, page + 4);
   const pageRange = pageArray.slice(start, end);
-  console.log(pageRange);
 
   const handlePageChange = (page) => {
     loadFilteredResults(filter, page);
