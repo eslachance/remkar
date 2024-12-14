@@ -83,7 +83,7 @@ const ResultsStoreProvider = ({ children }) => {
   };
 
   const getSongDataByID = (id: string): SongData => {
-    console.log(id, resultState);
+    // console.log(id, resultState);
     return resultState.filtered.find((song) => song.id === Number(id));
   };
 
