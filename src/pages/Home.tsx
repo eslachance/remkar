@@ -29,10 +29,10 @@ const HomePage = () => {
           <div>
             <h2><Link to="/karaoke">Karaoké</Link></h2>
             <p>
-              <strong>Samedi</strong>: 22h à 3AM
+              <strong>Vendredi</strong>: 22h à 3AM
             </p>
             <p>
-              <strong>Dimanche</strong>: 22h à 3AM
+              <strong>Samedi</strong>: 22h à 3AM
             </p>
           </div>
         </div>
