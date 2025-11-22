@@ -1,50 +1,79 @@
-# React + TypeScript + Vite
+# Bar La Remise - Official Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The official website for Bar La Remise, a dive bar in Montréal featuring karaoke nights.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🎤 **Karaoke Song Search**: Browse and search through the complete karaoke song catalog
+- 🌐 **Bilingual Support**: Full English and French translations with language toggle
+- 🎨 **Dive Bar Aesthetics**: Dark theme inspired by the bar's authentic atmosphere
+- 📱 **Responsive Design**: Optimized for all devices from mobile to desktop
+- 🔐 **User Authentication**: Login system for personalized features
 
-## Expanding the ESLint configuration
+## Technology Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React 18** with TypeScript
+- **Vite** for fast development and optimized builds
+- **UnoCSS** for utility-first styling
+- **React Router** for navigation
+- **TanStack Query** for data fetching and caching
 
-- Configure the top-level `parserOptions` property like this:
+## Color Palette
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+The website uses a custom color palette inspired by the bar's warm, vintage dive bar atmosphere:
+
+- **Background**: Deep charcoal brown (`#1a1512`)
+- **Primary Accent**: Warm orange (`#ea580c`) - inspired by the bar's lighting
+- **Secondary Accent**: Deep red (`#dc2626`) - inspired by the red wall accents
+- **Text**: Warm cream (`#fef3c7`)
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run start
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Lint code
+npm run lint
+
+# Format code
+npm run lint:fix
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Project Structure
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+src/
+├── app/           # App layout and routing
+├── components/    # Reusable UI components
+├── pages/         # Page components
+├── store/         # State management
+├── utils/         # Utility functions
+└── i18n/          # Internationalization
+```
+
+## Bar Information
+
+**Address**: 540 rue Boucher, Montréal, QC H2J 2S4  
+**Phone**: +1 (514) 272-0206
+
+**Opening Hours**:
+- Monday-Saturday: Noon to 3AM
+- Sunday: 2PM to 3AM
+
+**Karaoke Nights**:
+- Friday: 10PM to 3AM
+- Saturday: 10PM to 3AM
+
+---
+
+© 2024 Bar La Remise

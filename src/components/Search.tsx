@@ -1,9 +1,11 @@
 import { useContext, useState } from 'react';
 import { ResultStoreContext } from '@/store/results';
 import { debounce } from '@/utils';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 const Search = () => {
   const { resultState, dispatch, loadFilteredResults } = useContext(ResultStoreContext);
+  const { t } = useLanguage();
 
   const [search] = useState(() => debounce(loadFilteredResults, 250));
 
@@ -13,40 +15,26 @@ const Search = () => {
   };
 
   return (
-    <>
+    <div className="max-w-3xl mx-auto">
       <label
         htmlFor="default-search"
-        className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
-        Search
+        className="mb-2 text-sm font-medium sr-only">
+        {t('search')}
       </label>
       <div className="relative">
-        <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-          <svg
-            className="w-4 h-4 text-gray-500 dark:text-gray-400"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 20 20">
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-            />
-          </svg>
+        <div className="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none">
+          <span className="iconify i-ri-search-line text-xl text-dive-accent" />
         </div>
         <input
           value={resultState?.filter}
           type="search"
           id="default-search"
           onChange={onHandleFilterChange}
-          className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Recherche: Artiste, Titre"
-          required
+          className="block w-full p-4 ps-12 text-base bg-dive-bg-light border-2 border-dive-border rounded-lg text-dive-text placeholder-dive-text-muted focus:outline-none focus:border-dive-accent transition-colors"
+          placeholder={t('searchPlaceholder')}
         />
       </div>
-    </>
+    </div>
   );
 };
 
