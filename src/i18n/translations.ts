@@ -3,7 +3,7 @@ export type Language = 'en' | 'fr';
 export const translations = {
   en: {
     // Navigation
-    search: 'Search',
+    search: 'Karaoke',
     info: 'Info',
     login: 'Login',
     logout: 'Logout',
@@ -50,7 +50,7 @@ export const translations = {
   },
   fr: {
     // Navigation
-    search: 'Recherche',
+    search: 'Karaoké',
     info: 'Info',
     login: 'Connexion',
     logout: 'Déconnexion',

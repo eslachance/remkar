@@ -21,31 +21,7 @@ const HomePage = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Contact Info Card */}
-        <div className="bg-dive-bg-light border border-dive-border rounded-lg p-6 md:p-8 shadow-xl hover:shadow-2xl transition-shadow">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="iconify i-ri-map-pin-line text-3xl text-dive-accent" />
-            <h2 className="text-3xl font-display text-dive-text">{t('address')}</h2>
-          </div>
-          <div className="space-y-3 mb-6">
-            <p className="text-dive-text-dim text-lg">
-              540 rue Boucher
-            </p>
-            <p className="text-dive-text-dim text-lg">
-              Montréal, QC H2J 2S4
-            </p>
-          </div>
-          
-          <div className="flex items-center gap-3 mb-4 mt-8">
-            <span className="iconify i-ri-phone-line text-3xl text-dive-accent" />
-            <h2 className="text-3xl font-display text-dive-text">{t('phone')}</h2>
-          </div>
-          <a href="tel:+15142720206" className="text-dive-text-dim text-lg hover:text-dive-accent transition-colors">
-            +1 (514) 272-0206
-          </a>
-        </div>
-
-        {/* Hours Card */}
+                {/* Hours Card */}
         <div className="bg-dive-bg-light border border-dive-border rounded-lg p-6 md:p-8 shadow-xl hover:shadow-2xl transition-shadow">
           <div className="flex items-center gap-3 mb-6">
             <span className="iconify i-ri-time-line text-3xl text-dive-accent" />
@@ -96,6 +72,30 @@ const HomePage = () => {
               {language === 'fr' ? 'Voir la liste de karaoké' : 'View karaoke list'}
             </Link>
           </div>
+        </div>
+
+        {/* Contact Info Card */}
+        <div className="bg-dive-bg-light border border-dive-border rounded-lg p-6 md:p-8 shadow-xl hover:shadow-2xl transition-shadow">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="iconify i-ri-map-pin-line text-3xl text-dive-accent" />
+            <h2 className="text-3xl font-display text-dive-text">{t('address')}</h2>
+          </div>
+          <div className="space-y-3 mb-6">
+            <p className="text-dive-text-dim text-lg">
+              540 rue Boucher
+            </p>
+            <p className="text-dive-text-dim text-lg">
+              Montréal, QC H2J 2S4
+            </p>
+          </div>
+          
+          <div className="flex items-center gap-3 mb-4 mt-8">
+            <span className="iconify i-ri-phone-line text-3xl text-dive-accent" />
+            <h2 className="text-3xl font-display text-dive-text">{t('phone')}</h2>
+          </div>
+          <a href="tel:+15142720206" className="text-dive-text-dim text-lg hover:text-dive-accent transition-colors">
+            +1 (514) 272-0206
+          </a>
         </div>
       </div>
     </div>
